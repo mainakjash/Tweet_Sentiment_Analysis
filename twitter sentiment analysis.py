@@ -3,14 +3,16 @@ import re
 import tweepy
 from tweepy import OAuthHandler
 from textblob import TextBlob
+from config import config
+
 
 # Generic Twitter class for sentiment analysis
 class TwitterClient(object):
     def __init__(self):
-        consumer_key = "svlrCWFSW6ph2x8KR3iTFY77N"
-        consumer_secret = "Q9mzPGxjqxESbRpr3IZuc9AB8EcvoC97iUzZh27B3QtE4I1saR"
-        access_token = "69556666-r4PibCcIi4KJlorLvTwC8QYuAmjQ9LaubWh35UF8K"
-        access_token_secret = "RmgNvaoJ1wbCu1oVt1Tw6jGx9dyjHc7ou0BETkk6oRgww"
+        consumer_key = config['twitter']['consumer_key']
+        consumer_secret = config['twitter']['consumer_secret']
+        access_token = config['twitter']['access_token']
+        access_token_secret = config['twitter']['access_token_secret']
 
 # Authentication
         try:
@@ -61,11 +63,12 @@ class TwitterClient(object):
 
             return tweets
         except tweepy.TweepError as e:                                              # print error if any
-            print ("Error : " + str(e))
+            print("Error : " + str(e))
+
 
 def main():
     api = TwitterClient()
-    tweets = api.get_tweets("COVID19", count = 200)
+    tweets = api.get_tweets(config['topic'], count=config['number_of_messages'])
 
     ptweets = [tweet for tweet in tweets if tweet['sentiment'] == 'positive']           # picking positive tweets
     print("Positive tweets percentage: {} %".format(100 * len(ptweets) / len(tweets)))  # % of positive tweets
@@ -81,6 +84,7 @@ def main():
     print("\n\nNegative tweets:")
     for tweet in ntweets[:10]:
             print(tweet['text'])
+
 
 if __name__ == "__main__":
     main()

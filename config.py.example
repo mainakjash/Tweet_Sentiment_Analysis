@@ -1,0 +1,11 @@
+
+config = {
+    'twitter': {
+        'consumer_key': "a1a1a1a1a1a1a1a1a1a11a1a1",
+        'consumer_secret': "a1a1a1a1a1a1a1a1a1a1aa11a11a111a1a1a1a1a1a111a1a11",
+        'access_token': "a1a1a1a1-a1aa11a111a11a1a1a1a11a1111aa11a1a1a1aa11",
+        'access_token_secret': "a11a1a11a1a1a1a1a1a11a11a11a1a1a1a1a1a1a1aa11"
+    },
+    'topic': 'COVID19',
+    'number_of_messages': 200
+}
